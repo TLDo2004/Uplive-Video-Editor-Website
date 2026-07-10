@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Video processing temp files
+backend/temp/
+uploads/
+temp/
+*.mp4
+*.webm
+*.mkv
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/

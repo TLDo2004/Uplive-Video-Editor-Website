@@ -1,0 +1,40 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3333:3333"
+    environment:
+      PORT: 3333
+      NODE_ENV: production
+      CORS_ORIGIN: http://localhost:3000
+      WORK_DIR: /app/temp/jobs
+    volumes:
+      - backend_jobs:/app/temp/jobs
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 1G
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://backend:3333
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:3333
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    depends_on:
+      - backend
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 1G
+
+volumes:
+  backend_jobs:
